@@ -1,0 +1,25 @@
+aside.main-sidebar.sidebar-dark-primary.elevation-4
+  // Brand Logo
+  a.brand-link(href='#')
+    span.brand-text.font-weight-light AdminLTE 3
+
+  // Sidebar
+  .sidebar
+    // Sidebar user panel
+    .user-panel.mt-3.pb-3.mb-3.d-flex
+      .image
+        img.img-circle.elevation-2(src='/dist/img/avatar5.png' alt='User Image')
+      .info
+        a.d-block(href='#') Robby Tan
+
+    // Sidebar Menu
+    nav.mt-2
+      ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu')
+        li.nav-item
+          a.nav-link(href='/' class=(currentPage === 'starter' ? 'active' : ''))
+            i.nav-icon.fas.fa-tachometer-alt
+            p Dashboard
+        li.nav-item
+          a.nav-link(href='/category' class=(currentPage === 'category' ? 'active' : ''))
+            i.nav-icon.fas.fa-th
+            p Category Mgmt
