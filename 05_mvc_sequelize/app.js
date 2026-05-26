@@ -9,7 +9,6 @@ const session = require('express-session')
 app.set('view engine', 'pug')
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'));
-app.use(route)
 app.use(session({
   secret: process.env.SESSION_SECRET || 'yoursecret',
   resave: false,
@@ -18,6 +17,7 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 2
   }
 }))
+app.use(route)
 
 const PORT = process.env.PORT || 3000
 sequelize.sync({alter: false})
