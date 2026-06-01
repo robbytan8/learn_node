@@ -4,6 +4,7 @@ const AuthController = require('../controllers/AuthController')
 const CategoryController = require('../controllers/CategoryController')
 const BookController = require("../controllers/BookController");
 const StoreBookRequestValidator = require('../validators/StoreBookValidator')
+const UpdateBookRequestValidator = require('../validators/UpdateBookValidator')
 const StoreCategoryRequestValidator = require('../validators/StoreCategoryValidator')
 const UpdateCategoryRequestValidator = require('../validators/UpdateCategoryValidator')
 
@@ -23,7 +24,7 @@ router.post('/category', authMiddleware, StoreCategoryRequestValidator, Category
 router.get('/category', authMiddleware, CategoryController.index)
 
 router.get('/book/:isbn/edit', authMiddleware, BookController.edit)
-router.put('/book/:isbn', authMiddleware, BookController.update)
+router.put('/book/:isbn', authMiddleware, UpdateBookRequestValidator, BookController.update)
 router.delete('/book/:isbn', authMiddleware, BookController.destroy)
 router.get('/book/create', authMiddleware, BookController.create)
 router.post('/book', authMiddleware, StoreBookRequestValidator, BookController.store)
