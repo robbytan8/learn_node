@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const AuthController = require('../controllers/AuthController')
 const CategoryController = require('../controllers/CategoryController')
+const BookController = require("../controllers/BookController");
+const StoreBookRequestValidator = require('../validators/StoreBookValidator')
 
 const authMiddleware = require('../middlewares/AuthMiddleware')
 
@@ -18,7 +20,14 @@ router.get('/category/create', authMiddleware, CategoryController.create)
 router.post('/category', authMiddleware, CategoryController.store)
 router.get('/category', authMiddleware, CategoryController.index)
 
-router.get('/', (req, res) => {
+router.get('/book/:isbn/edit', authMiddleware, BookController.edit)
+router.put('/book/:isbn', authMiddleware, BookController.update)
+router.delete('/book/:isbn', authMiddleware, BookController.destroy)
+router.get('/book/create', authMiddleware, BookController.create)
+router.post('/book', authMiddleware, StoreBookRequestValidator, BookController.store)
+router.get('/book', authMiddleware, BookController.index)
+
+router.get('/', authMiddleware, (req, res) => {
   res.render('starter', {
     currentPage: 'starter',
   })

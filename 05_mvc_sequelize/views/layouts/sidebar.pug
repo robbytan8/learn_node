@@ -24,6 +24,10 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
             i.nav-icon.fas.fa-th
             p Category Mgmt
         li.nav-item
+          a.nav-link(href='/book' class=(currentPage === 'book' ? 'active' : ''))
+            i.nav-icon.fas.fa-th
+            p Book Mgmt
+        li.nav-item
           a.nav-link(href='/logout')
             i.nav-icon.fas.fa-sign-out-alt
             p Logout
