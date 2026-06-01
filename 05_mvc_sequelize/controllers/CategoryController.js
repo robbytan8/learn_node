@@ -16,6 +16,7 @@ const CategoryController = {
   create: (req, res) => {
     try {
       res.status(200).render('category/create', {
+        category: {},
         currentPage: 'category',
       })
     } catch (error) {
@@ -25,12 +26,8 @@ const CategoryController = {
 
   store: async (req, res) => {
     try {
-      const {name} = req.body;
-      if (!name) {
-        return res.status(400).send('Name is required');
-      }
-
-      await Category.create({name});
+      const {name, description} = req.body
+      await Category.create({name, description})
       res.redirect(`/category`)
     } catch (error) {
       res.status(500).send(`Error server: ${error.message}`)
@@ -57,14 +54,9 @@ const CategoryController = {
 
   update: async (req, res) => {
     try {
-      const {id} = req.params;
-      const {name} = req.body;
-
-      if (!name) {
-        return res.status(400).send('Name is required');
-      }
-
-      await Category.update({name}, {where: {id}});
+      const {id} = req.params
+      const {name, description} = req.body
+      await Category.update({name, description}, {where: {id}})
       res.redirect('/category')
     } catch (error) {
       res.status(500).send(`Error server: ${error.message}`)
