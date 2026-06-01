@@ -1,0 +1,40 @@
+extends ../layouts/master
+
+block content
+  .content-wrapper
+    // Content Header
+    section.content-header
+      .container-fluid
+        .row.mb-2
+          .col-sm-6
+            h1 Dashboard
+    // Main content
+    section.content
+      .container-fluid
+        .card
+          .card-body
+            form(method='POST', action=`/category/${category.id}?_method=PUT`)
+              .form-group
+                label(for='name') Name
+                input#name.form-control(
+                  type='text'
+                  name='name'
+                  class=errors && errors.name ? 'is-invalid' : ''
+                  value=`${category.name}`
+                  maxlength=60
+                  required
+                  autofocus
+                )
+                if errors && errors.name
+                  .invalid-feedback= errors.name
+              .form-group
+                label(for='description') Description
+                textarea#description.form-control(
+                  name='description'
+                  rows='3'
+                  class=errors && errors.description ? 'is-invalid' : ''
+                  maxlength=150
+                )= category.description
+                if errors && errors.description
+                  .invalid-feedback= errors.description
+              button.btn.btn-primary(type='submit') Submit

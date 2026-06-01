@@ -1,0 +1,92 @@
+extends ../layouts/master
+
+block content
+  .content-wrapper
+    // Content Header
+    section.content-header
+      .container-fluid
+        .row.mb-2
+          .col-sm-6
+            h1 Dashboard
+    // Main content
+    section.content
+      .container-fluid
+        .card
+          .card-body
+            form(method='POST', action='/book')
+              .form-group
+                label(for='isbn') ISBN
+                input#isbn.form-control(
+                  type='text'
+                  name='isbn'
+                  placeholder='e.g. 1234567890123'
+                  class=errors && errors.isbn ? 'is-invalid' : ''
+                  value=book.isbn || ''
+                  maxlength=13
+                  required
+                  autofocus
+                )
+                if errors && errors.isbn
+                  .invalid-feedback= errors.isbn
+              .form-group
+                label(for='title') Title
+                input#title.form-control(
+                  type='text'
+                  name='title'
+                  placeholder='e.g. Programming for Dummies'
+                  class=errors && errors.title ? 'is-invalid' : ''
+                  value=book.title || ''
+                  maxlength=100
+                  required
+                )
+                if errors && errors.title
+                  .invalid-feedback= errors.title
+              .form-group
+                label(for='author') Author
+                input#author.form-control(
+                  type='text'
+                  name='author'
+                  required
+                  maxlength=100
+                  class=errors && errors.author ? 'is-invalid' : ''
+                  placeholder='e.g. John Doe'
+                  value=book.author || ''
+                )
+                if errors && errors.author
+                  .invalid-feedback= errors.author
+              .form-group
+                label(for='publish_year') Publish Year
+                input#publish_year.form-control(
+                  type='number'
+                  name='publish_year'
+                  required
+                  min=1000
+                  max=new Date().getFullYear()
+                  class=errors && errors.publish_year ? 'is-invalid' : ''
+                  placeholder='2000'
+                  value=book.publish_year || ''
+                )
+                if errors && errors.publish_year
+                  .invalid-feedback= errors.publish_year
+              .form-group
+                label(for='description') Description
+                textarea#description.form-control(
+                  name='description'
+                  rows=3
+                  required
+                  class=errors && errors.description ? 'is-invalid' : ''
+                )= book.description || ''
+                if errors && errors.description
+                  .invalid-feedback= errors.description
+              .form-group
+                label(for='category_id') Category
+                select#category_id.form-control(
+                  name='category_id'
+                  class=errors && errors.category_id ? 'is-invalid' : ''
+                )
+                  option(value='') -- Select Category --
+                  each category in categories
+                    option(value=category.id)= category.name
+                if errors && errors.category_id
+                  .invalid-feedback= errors.category_id
+              button.btn.btn-primary(type='submit') Submit

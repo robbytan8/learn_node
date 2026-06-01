@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.96",
     "nodemon": "^3.1.14"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "express-session": "^1.19.0",
     "joi": "^18.2.1",
     "method-override": "^3.0.0",
+    "mongoose": "^9.6.3",
     "mysql2": "^3.22.3",
     "pug": "^3.0.4",
     "sequelize": "^6.37.8"

@@ -1,0 +1,33 @@
+extends ../layouts/master
+
+block content
+  .content-wrapper
+    // Content Header
+    section.content-header
+      .container-fluid
+        .row.mb-2
+          .col-sm-6
+            h1 Dashboard
+    // Main content
+    section.content
+      .container-fluid
+        .card
+          .card-header
+            h3.card-title Category List
+            a.btn.btn-primary.btn-sm.float-right(href='/category/create') Create New Category
+          .card-body
+            table.table.table-bordered
+              thead
+                tr
+                  th(scope='col') Name
+                  th(scope='col') Description
+                  th(scope='col') Action
+              tbody
+                each category in categories
+                  tr
+                    td= category.name
+                    td= category.description
+                    td
+                      a.btn.btn-warning.btn-sm(href=`/category/${category.id}/edit`) Edit
+                      form(method='POST', action=`/category/${category.id}?_method=DELETE`, style='display:inline', onsubmit='return confirm("Are you sure you want to delete this category?");')
+                        button.btn.btn-danger.btn-sm(type='submit') Delete

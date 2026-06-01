@@ -1,0 +1,136 @@
+{
+  "collections": {
+    "mongo_20252.book": {
+      "ns": "mongo_20252.book",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "author",
+          "category_id",
+          "createdAt",
+          "description",
+          "isbn",
+          "publish_year",
+          "title",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "author": {
+            "bsonType": "string"
+          },
+          "category_id": {
+            "bsonType": "objectId"
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "description": {
+            "bsonType": "string"
+          },
+          "isbn": {
+            "bsonType": "string"
+          },
+          "publish_year": {
+            "bsonType": "int"
+          },
+          "title": {
+            "bsonType": "string"
+          },
+          "updatedAt": {
+            "bsonType": "date"
+          }
+        }
+      }
+    },
+    "mongo_20252.category": {
+      "ns": "mongo_20252.category",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "createdAt",
+          "description",
+          "name",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "description": {
+            "bsonType": "string"
+          },
+          "name": {
+            "bsonType": "string"
+          },
+          "updatedAt": {
+            "bsonType": "date"
+          }
+        }
+      }
+    },
+    "mongo_20252.users": {
+      "ns": "mongo_20252.users",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "createdAt",
+          "email",
+          "name",
+          "password",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "email": {
+            "bsonType": "string"
+          },
+          "name": {
+            "bsonType": "string"
+          },
+          "password": {
+            "bsonType": "string"
+          },
+          "updatedAt": {
+            "bsonType": "date"
+          }
+        }
+      }
+    }
+  },
+  "relationships": [
+    {
+      "id": "a403581a-3326-4a51-9ee3-b36e334f86cb",
+      "relationship": [
+        {
+          "ns": "mongo_20252.book",
+          "cardinality": 1,
+          "fields": [
+            "category_id"
+          ]
+        },
+        {
+          "ns": "mongo_20252.category",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    }
+  ]
+}
